@@ -25,9 +25,20 @@ public class AngleTest {
 	public void testGetAngle() {
 		System.out.println("getAngle");
 		
-		Double expResult = Angle.getAngle(prevStart, currStart, currEnd);
-		Double result = Angle.getAngle(currStart, currEnd);
+		Double expResult = toPositive(Angle.getAngle(prevStart, currStart, currEnd));
+		Double result = toPositive(Angle.getAngle(currStart, currEnd));
 		assertEquals(expResult, result);
+	}
+	
+	public static Double toPositive(Double angle) {
+		Double result = angle;
+		Double TWO_PI = Math.PI * 2;
+		
+		if (0 > angle) {
+			result = TWO_PI + angle;
+		}
+		
+		return result;
 	}
 
 }
